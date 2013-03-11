@@ -8,7 +8,7 @@
 	<name>handlebars-maven-plugin</name>
 	<description>The maven plugin for precompiling handlbars.js templates.</description>
 	<packaging>maven-plugin</packaging>
-	<url>https://github.com/kawasima/handlebars-maven-plugin/</url>
+	<url>https://github.com/joechev/handlebars-maven-plugin/</url>
 
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
@@ -38,9 +38,9 @@
 	</developers>
 
 	<scm>
-		<url>scm:git:https://github.com/kawasima/handlebars-maven-plugin.git</url>
-		<connection>scm:git:https://github.com/kawasima/handlebars-maven-plugin.git</connection>
-		<developerConnection>scm:git:https://github.com/kawasima/handlebars-maven-plugin.git</developerConnection>
+		<url>scm:git:https://github.com/joechev/handlebars-maven-plugin.git</url>
+		<connection>scm:git:https://github.com/joechev/handlebars-maven-plugin.git</connection>
+		<developerConnection>scm:git:https://github.com/joechev/handlebars-maven-plugin.git</developerConnection>
 	</scm>
 
 	<properties>
