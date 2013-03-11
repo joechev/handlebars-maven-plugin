@@ -84,21 +84,22 @@ public class HandlebarsEngine {
         }
     }
 
-    public void precompile(Collection<File> templates, File outputFile, boolean purgeWhitespace) throws IOException {
+    public void precompile(Collection<File> templates, File outputBaseDir, boolean purgeWhitespace) throws IOException {
         Context cx = Context.enter();
         PrintWriter out = null;
-        LOG.info("precompile " + templates + " to " + outputFile);
+        File outputFile = null;
         try {
-            out = new PrintWriter(new OutputStreamWriter(new FileOutputStream(outputFile), encoding));
-            out.print("(function() {\n  var template = Handlebars.template, "
-                    + "templates = Handlebars.templates = Handlebars.templates || {};\n");
-            // Rhino for Handlebars Template
-            ScriptableObject global = cx.initStandardObjects();
-            InputStreamReader in = new InputStreamReader(handlebarsUrl.openStream());
-            cx.evaluateReader(global, in, handlebarsName, 1, null);
-            IOUtils.closeQuietly(in);
-
             for (File template : templates) {
+            	outputFile = new File(outputBaseDir, template.getName() + ".js");
+            	out = new PrintWriter(new OutputStreamWriter(new FileOutputStream(outputFile), encoding));
+            	LOG.info("precompile " + template + " to " + outputFile);
+                out.print("(function() {\n  var template = Handlebars.template, "
+                        + "templates = Handlebars.templates = Handlebars.templates || {};\n");
+                // Rhino for Handlebars Template
+                ScriptableObject global = cx.initStandardObjects();
+                InputStreamReader in = new InputStreamReader(handlebarsUrl.openStream());
+                cx.evaluateReader(global, in, handlebarsName, 1, null);
+                IOUtils.closeQuietly(in);
                 String data = FileUtils.readFileToString(template, encoding);
 
                 if (purgeWhitespace)

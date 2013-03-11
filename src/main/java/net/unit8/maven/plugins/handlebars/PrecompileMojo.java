@@ -147,7 +147,7 @@ public class PrecompileMojo extends AbstractMojo {
 			if (!outputBaseDir.exists()) {
 				FileUtils.forceMkdir(outputBaseDir);
 			}
-			return new File(outputBaseDir, directory.getName() + ".js");
+			return outputBaseDir;
 		} else {
 			String relativePath = sourceDirectory.toURI().relativize(directory.toURI()).getPath();
 			String name = StringUtils.chomp(relativePath, "/").replace('/', '-');
